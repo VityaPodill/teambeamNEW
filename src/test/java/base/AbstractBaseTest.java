@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import pages.HomePage;
 
 import java.util.ArrayList;
 
@@ -22,8 +23,8 @@ abstract public class AbstractBaseTest {
         driver = new ChromeDriver();
         driver.get("https://novaposhta.ua/");
         driver.manage().window().maximize();
-        driver.findElement(By.xpath("//div[@id='popup_info']//i[@class='click close btn_x']"))
-                .click();
+        HomePage homePage = new HomePage(driver);
+        homePage.closeCookie();
     }
 
     @Step("Finish set up driver")

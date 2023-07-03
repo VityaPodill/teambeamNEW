@@ -14,4 +14,6 @@ public class HomeElements extends AbstractBasePage {
     protected WebElement getNovaPostElement() {
         return waitUntilElementToBeClickableByXpath(NOVA_POST_BTN);
     }
+    protected final static String CLOSE_COOKIE = "//div[@id='popup_info']//i[@class='click close btn_x']";
+
 }
