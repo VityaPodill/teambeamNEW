@@ -15,6 +15,7 @@ public class HomePage extends HomeElements {
         getNovaPostElement().click();
         return this;
     }
+
     public HomePage closeCookie() {
         waitUntilElementToBeClickableByXpath(CLOSE_COOKIE).click();
         return this;
