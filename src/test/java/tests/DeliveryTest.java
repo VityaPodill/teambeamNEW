@@ -12,7 +12,7 @@ import static org.testng.Assert.assertTrue;
 
 public class DeliveryTest extends AbstractBaseTest {
     @Test
-    public void deliveryTest() {
+    public void deliveryTest() throws InterruptedException {
         DeliveryPage departmentPage = new DeliveryPage(driver);
 
         departmentPage
@@ -21,6 +21,9 @@ public class DeliveryTest extends AbstractBaseTest {
         assertEquals(driver.getCurrentUrl(), "https://novaposhta.ua/onlineorder/estimatedate");
 
 
+        departmentPage
+                .clickTimeButton()
+                .enterInputTime();
 
         String dateTimeText = departmentPage.getDateTimeField().getAttribute("value");
         LocalDateTime currentDateTime = LocalDateTime.now();
@@ -36,6 +39,21 @@ public class DeliveryTest extends AbstractBaseTest {
         System.out.println(LocalDateTime.now());
         assertTrue(timeNow.contains(dateTimeFromField.toString()));
 
+        assert departmentPage.inputService().getAttribute("value").isEmpty() : "Елемент є непорожнім";
+        assert departmentPage.citySender().getAttribute("value").isEmpty() : "Елемент є непорожнім";
+        assert departmentPage.recipientCity().getAttribute("value").isEmpty() : "Елемент є непорожнім";
+
+        departmentPage
+                .clickTypeServiceButton()
+                .clickWarehouseButton()
+                .clickCitySenderButton()
+                .clickKyivButton()
+                .clickRecipientButton()
+                .clickLvivButton()
+                .clickCalculateDateButton();
+
+        String DataTimeDelivery = departmentPage.getTimeDelivery().getText();
+        System.out.println(DataTimeDelivery);
 
     }
 }

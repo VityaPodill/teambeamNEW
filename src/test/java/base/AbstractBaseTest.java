@@ -21,8 +21,8 @@ abstract public class AbstractBaseTest {
     @BeforeMethod
     public void openWindow() {
         driver = new ChromeDriver();
-        driver.get("https://novaposhta.ua/");
         driver.manage().window().maximize();
+        driver.get("https://novaposhta.ua/");
         HomePage homePage = new HomePage(driver);
         homePage.closeCookie();
     }
